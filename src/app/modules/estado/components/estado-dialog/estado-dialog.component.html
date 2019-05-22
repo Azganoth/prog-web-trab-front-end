@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>{{title}}</h1>
+<div mat-dialog-content [formGroup]="estadoForm">
+  <mat-form-field>
+    <input matInput type="text" placeholder="Id" formControlName="id">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput type="text" placeholder="Nome" formControlName="nome">
+    <mat-error *ngIf="estadoForm.get('nome').hasError('required')">Nome é <strong>requerido</strong></mat-error>
+    <mat-error *ngIf="estadoForm.get('nome').hasError('minlength') && !estadoForm.get('nome').hasError('required')">O nome deve ter no <strong>mínimo 3 caracteres</strong></mat-error>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-flat-button color="primary" [disabled]="estadoForm.invalid" style="margin-right: 10px" (click)="save()">Salvar</button>
+  <button mat-flat-button color="primary" (click)="cancel()">Cancelar</button>
+</div>

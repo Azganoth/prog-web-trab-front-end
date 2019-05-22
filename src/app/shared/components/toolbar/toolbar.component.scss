@@ -1,0 +1,26 @@
+.app-toolbar {
+  text-transform: uppercase;
+}
+
+.nav-link {
+  font-size: 16px;
+  font-weight: lighter;
+  color: white;
+}
+
+.nav-link.home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+}
+
+.nav-links {
+  padding: 0 25px;
+}
+
+@media (max-width: 1000px) {
+  .home-title {
+    display: none;
+  }
+}

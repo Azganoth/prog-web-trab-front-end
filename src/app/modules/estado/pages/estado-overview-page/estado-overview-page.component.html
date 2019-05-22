@@ -1,0 +1,36 @@
+<div class="container">
+  <button mat-flat-button class="operation-button add" color="accent" matTooltip="Adicionar um estado." (click)="showEstado()">
+    <mat-icon>add</mat-icon>
+    Adicionar
+  </button>
+  <h1 class="header">Estados</h1>
+  <mat-form-field>
+    <input matInput (keyup)="applySearch($event.target['value'])" placeholder="Pesquisar" type="text">
+  </mat-form-field>
+  <table mat-table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>#</th>
+      <td mat-cell *matCellDef="let row">{{row['id']}}</td>
+    </ng-container>
+    <ng-container matColumnDef="nome">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Nome</th>
+      <td mat-cell *matCellDef="let row">{{row['nome']}}</td>
+    </ng-container>
+    <ng-container matColumnDef="operations">
+      <th mat-header-cell *matHeaderCellDef>Operações</th>
+      <td mat-cell *matCellDef="let row">
+        <button mat-flat-button class="operation-button" color="primary" matTooltip="Editar o estado." matTooltipPosition="above" (click)="showEstado(row)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-flat-button class="operation-button" color="warn" matTooltip="Remover o estado." matTooltipPosition="above" (click)="confirmDelete(row)">
+          <mat-icon >remove</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="headers"></tr>
+    <tr mat-row *matRowDef="let row; columns: headers;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+</div>
